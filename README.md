@@ -7,8 +7,9 @@ Script List:
 Transitions between Menu and Play Scenes DONE
 Display placeholder graphics DONE
 Display elapsed time DONE
-Player Behaviours
-
+Interactable Element Spawning DONE
+Interactable Element Behaviours on Collision DONE
+Player Jumping
 
 Asset List:
 

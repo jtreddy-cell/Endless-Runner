@@ -17,7 +17,7 @@ class Menu extends Phaser.Scene {
 
     create(){
         // log being in menu scene to console
-        console.log("Menu Scene");
+        //console.log("Menu Scene");
 
         // Display a blue background
         this.cameras.main.setBackgroundColor("#0000FF");
@@ -46,7 +46,7 @@ class Menu extends Phaser.Scene {
     }
 
     update(){ 
-        console.log("Updating Menu Scene");
+        // console.log("Updating Menu Scene");
         // Switch to play scene if player hits spacebar
         if(Phaser.Input.Keyboard.JustDown(keySPACE)){
             this.scene.start("playScene");
