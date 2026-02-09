@@ -4,8 +4,11 @@ My current plan is to implement the code first, using placeholders boxes for the
 
 Script List:
 
+Transitions between Menu and Play Scenes DONE
+Display placeholder graphics DONE
+Display elapsed time DONE
 Player Behaviours
-Transitions between Menu and Play Scenes
+
 
 Asset List:
 
@@ -14,3 +17,5 @@ Catnip sprite
 Treat sprite
 Background
 Obstacles
+
+Sound effects
