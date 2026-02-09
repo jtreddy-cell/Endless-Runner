@@ -14,11 +14,6 @@ class Interactable extends Phaser.GameObjects.Sprite {
     update(){
         // Move right across the screen
         this.x += this.scene.gameSpeed;
-
-        // Destroy the interactable element if it goes off the right edge of the screen
-        if(this.x > width){
-            this.destroy();
-        }
     }
 
     collided(){
@@ -43,6 +38,10 @@ class Interactable extends Phaser.GameObjects.Sprite {
         }
 
         // Destroy the interactable element when collided with the player
+        this.destroy();
+    }
+
+    overEdge(){
         this.destroy();
     }
 }

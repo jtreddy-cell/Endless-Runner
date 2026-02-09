@@ -52,6 +52,7 @@ class Play extends Phaser.Scene {
 
             callback: () => {
                 this.elapsedTime += 0.01 * this.stopwatchSpeed; // increase elapsed time by 0.01 seconds (10ms) multiplied by the stopwatch speed
+                this.score += 0.1 * this.stopwatchSpeed; // increase score over time, multiplied by the stopwatch speed
             }
         });
         
@@ -101,10 +102,14 @@ class Play extends Phaser.Scene {
             }
         }
 
-        // Check collision
+        // Check collision or if interactable goes off the right edge of the screen
         this.interactables.forEach(interactable => {
             if(this.checkCollision(this.cat, interactable)){
                 interactable.collided();
+                this.interactables = this.interactables.filter(i => i !== interactable);
+            }
+            else if(interactable.x > width){
+                interactable.overEdge();
                 this.interactables = this.interactables.filter(i => i !== interactable);
             }
         });     
@@ -143,9 +148,8 @@ class Play extends Phaser.Scene {
         this.stopwatch.paused = true;
         this.spawnTimer.paused = true;
 
-        // Update score
-        this.score += Math.floor(this.elapsedTime * 10);
-        console.log("Final Score: " + this.score);
+        // Display the score rounded to the nearest integer
+        console.log("Final Score:", Math.round(this.score));
 
         // Display game over text
         let gameOverConfig = {
@@ -162,6 +166,7 @@ class Play extends Phaser.Scene {
         this.add.text(width/2, height/2 + 50, "Press Space to play again, or ESC to go back to menu.", gameOverConfig).setOrigin(0.5);       
     }
 
+    // Handle catnip effect
     catnipEffect(){
         this.scene.gameSpeed += 1;
         this.scene.stopwatchSpeed += 0.5;
