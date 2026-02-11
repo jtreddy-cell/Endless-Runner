@@ -1,5 +1,5 @@
 // Interactable prefab
-class Interactable extends Phaser.GameObjects.Sprite {
+class Interactable extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, frame, name){
         super(scene, x, y, texture, frame);
 
@@ -9,11 +9,12 @@ class Interactable extends Phaser.GameObjects.Sprite {
 
         // add interactable to existing scene
         scene.add.existing(this);
+        scene.physics.add.existing(this);
     }
 
     update(){
         // Move right across the screen
-        this.x += this.scene.gameSpeed;
+        this.setVelocityX(this.scene.gameSpeed * 100);
     }
 
     collided(){

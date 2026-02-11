@@ -13,8 +13,17 @@ class Play extends Phaser.Scene {
 
         // Create one black horizantal recatngles to use as a lane at the bottom of the screen
         const laneHeight = height / 5;
+
         // bottom lane
-        this.add.rectangle(width/2, laneHeight * 4, width, laneHeight, 0x0000000);
+        this.ground = this.add.rectangle(width/2, laneHeight * 4 + 100, width, laneHeight, 0x000000);
+        this.physics.add.existing(this.ground, true);
+
+        // create cat at bottom right of the screen
+        this.cat = new Cat(this, width - 50, laneHeight * 4 - 100, "cat").setOrigin(0.5);
+        this.cat.immovable = true;  
+
+        // collision between cat and ground
+        this.physics.add.collider(this.cat, this.ground);
 
         // game over flag
         this.isGameOver = false;
@@ -30,12 +39,14 @@ class Play extends Phaser.Scene {
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-        
-        // create cat at bottom right of the screen
-        this.cat = new Cat(this, width - 50, laneHeight * 4 - 25, "cat").setOrigin(0.5);
 
         // create an empty list of interactable elements (obstacle, catnip, treat)
-        this.interactables = [];
+        this.interactables = this.physics.add.group();
+
+        this.physics.add.overlap(this.cat, this.interactables, (cat, interactable) => {
+            interactable.collided();
+        });
+        
 
         // Stopwatch for elapsed time
         this.elapsedTime = 0;
@@ -84,7 +95,7 @@ class Play extends Phaser.Scene {
         // Keep updating while game is not over
         if(!this.isGameOver){
             this.cat.update();
-            this.interactables.forEach(interactable => {
+            this.interactables.getChildren().forEach(interactable => {
                 interactable.update();
             });
         }
@@ -101,45 +112,20 @@ class Play extends Phaser.Scene {
                 this.scene.start("menuScene");
             }
         }
-
-        // Check collision or if interactable goes off the right edge of the screen
-        this.interactables.forEach(interactable => {
-            if(this.checkCollision(this.cat, interactable)){
-                interactable.collided();
-                this.interactables = this.interactables.filter(i => i !== interactable);
-            }
-            else if(interactable.x > width){
-                interactable.overEdge();
-                this.interactables = this.interactables.filter(i => i !== interactable);
-            }
-        });     
     }
 
     // Spawns an interactable element (obstacle, catnip, treat) 
     spawnInteractable(){
-        // Randomly choose between obstacle, catnip, and treat
-        const types = ["obstacle", "catnip", "treat"];
+        // Randomly choose between obstacle, catnip, and treat. Obstacles should be more common than catnip and treats, so they are weighted more heavily in the random selection.
+        const types = ["obstacle", "obstacle", "obstacle", "catnip", "treat"];
         const type = Phaser.Utils.Array.GetRandom(types);
 
         // Create the interactable element at the left edge of the screen in the bottom lane
         const laneHeight = height / 5;
         const interactable = new Interactable(this, 0, laneHeight * 4 - 25, type, 0, type).setOrigin(0.5);
-        
-        // Add the interactable element to the list of interactables
-        this.interactables.push(interactable);
-    }
 
-    // Check for collision between the player and an interactable element
-    checkCollision(cat, interactable) {
-        // simple AABB checking
-        if (cat.x < interactable.x + interactable.width &&
-            cat.x + cat.width > interactable.x &&
-            cat.y < interactable.y + interactable.height &&
-            cat.height + cat.y > interactable.y) {
-                return true;
-        } else {
-            return false;
-        }
+        // Add the interactable element to the list of interactables
+        this.interactables.add(interactable);
     }
 
     // Handle game over state
@@ -168,15 +154,15 @@ class Play extends Phaser.Scene {
 
     // Handle catnip effect
     catnipEffect(){
-        this.scene.gameSpeed += 1;
-        this.scene.stopwatchSpeed += 0.5;
+        this.gameSpeed += 1;
+        this.stopwatchSpeed += 0.5;
         // slows game back down after 10 seconds
         this.catnipTimer = this.time.addEvent({
             delay: 10000, 
             loop: false,
             callback: () => {
-                this.scene.gameSpeed -= 1;
-                this.scene.stopwatchSpeed -= 0.5;
+                this.gameSpeed -= 1;
+                this.stopwatchSpeed -= 0.5;
                 console.log("Catnip effect ended, game speed returned to normal");
             }
         });
