@@ -25,11 +25,17 @@ class Cat extends Phaser.Physics.Arcade.Sprite {
         // Jump input
         if(Phaser.Input.Keyboard.JustDown(keySPACE) && this.body.blocked.down){
             this.setVelocityY(-this.jumpStrength);
-            this.anims.play("cat_jump", true);
         }
-        // play cat running animation when on the ground
-        else if(this.body.blocked.down){
-            this.anims.play("cat_run", true);
+
+        // Animation switching 
+        if (!this.body.blocked.down) {
+            if (this.anims.currentAnim.key !== "cat_jump") {
+                this.play("cat_jump", true);
+            }
+        } else {
+            if (this.anims.currentAnim.key !== "cat_run") {
+                this.play("cat_run", true);
+            }
         }
 
     }
