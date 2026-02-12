@@ -8,8 +8,8 @@ class Play extends Phaser.Scene {
         // log being in play scene to console
         console.log("Play Scene");
 
-        // Blue background
-        this.cameras.main.setBackgroundColor("#0000FF");
+        // Display a background color for the play scene
+        this.cameras.main.setBackgroundColor("#DDDDDD");
 
         // Create one black horizantal recatngles to use as a lane at the bottom of the screen
         const laneHeight = height / 5;
@@ -17,6 +17,24 @@ class Play extends Phaser.Scene {
         // bottom lane
         this.ground = this.add.rectangle(width/2, laneHeight * 4 + 100, width, laneHeight, 0x000000);
         this.physics.add.existing(this.ground, true);
+
+        // Create cat running animation
+        this.anims.create({
+            key: "cat_run",
+            frames: this.anims.generateFrameNumbers("cat", { start: 0, end: 5 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+
+        // Create cat jumping animation
+        this.anims.create({
+            key: "cat_jump",
+            frames: this.anims.generateFrameNumbers("cat", { start: 2, end: 2 }),
+            frameRate: 1,
+            repeat: -1
+        });
+        
 
         // create cat at bottom right of the screen
         this.cat = new Cat(this, width - 50, laneHeight * 4 - 100, "cat").setOrigin(0.5);
@@ -62,7 +80,7 @@ class Play extends Phaser.Scene {
             loop: true,
 
             callback: () => {
-                this.elapsedTime += 0.01 * this.stopwatchSpeed; // increase elapsed time by 0.01 seconds (10ms) multiplied by the stopwatch speed
+                this.elapsedTime += 0.01; // increase elapsed time by 0.01 seconds (10ms) 
                 this.score += 0.1 * this.stopwatchSpeed; // increase score over time, multiplied by the stopwatch speed
             }
         });
@@ -87,8 +105,6 @@ class Play extends Phaser.Scene {
     }
 
     update(){ 
-        //console.log("Updating Play Scene");
-
         // Update the time text
         this.timeText.setText("Time: " + this.elapsedTime.toFixed(2));
         
@@ -133,6 +149,13 @@ class Play extends Phaser.Scene {
         // Stop the stopwatch and spawn timer
         this.stopwatch.paused = true;
         this.spawnTimer.paused = true;
+        this.speedUp.paused = true;
+
+        // Stop cat animation
+        this.cat.anims.stop();
+
+        // Destroy all interactable elements
+        this.interactables.clear(true, true);
 
         // Display the score rounded to the nearest integer
         console.log("Final Score:", Math.round(this.score));

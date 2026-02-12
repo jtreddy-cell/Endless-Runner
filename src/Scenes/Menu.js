@@ -7,7 +7,10 @@ class Menu extends Phaser.Scene {
         // Will preload assets here once I have some
 
         // Preload cat 
-        this.load.image("cat", "./assets/cat.png");
+        this.load.spritesheet("cat", "./assets/cat.png", {
+            frameWidth: 64,
+            frameHeight: 64
+        });
 
         // Preload interactable elements (obstacle, catnip, treat)
         this.load.image("obstacle", "./assets/obstacle.png");
@@ -19,8 +22,8 @@ class Menu extends Phaser.Scene {
         // log being in menu scene to console
         //console.log("Menu Scene");
 
-        // Display a blue background
-        this.cameras.main.setBackgroundColor("#0000FF");
+        // Display a background color for the menu
+        this.cameras.main.setBackgroundColor("#DDDDDD");
 
 
         // Display text describing instructions

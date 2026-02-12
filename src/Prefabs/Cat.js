@@ -10,10 +10,12 @@ class Cat extends Phaser.Physics.Arcade.Sprite {
         // Jump properties
         this.fixedX = x;           // lock horizontal position
         this.groundY = y;           // the Y position of the lane (ground)
-        this.isJumping = false;
         this.jumpStrength = 500;    
         this.body.setGravityY(600)   
         this.setCollideWorldBounds(true); 
+
+        // Play running animation by default
+        this.anims.play("cat_run", true);
     }
 
     update(){
@@ -23,6 +25,11 @@ class Cat extends Phaser.Physics.Arcade.Sprite {
         // Jump input
         if(Phaser.Input.Keyboard.JustDown(keySPACE) && this.body.blocked.down){
             this.setVelocityY(-this.jumpStrength);
+            this.anims.play("cat_jump", true);
         }
+        else if(this.isJumping && this.body.blocked.down){
+            this.anims.play("cat_run", true);
+        }
+
     }
 }
