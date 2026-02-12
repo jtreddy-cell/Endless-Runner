@@ -1,5 +1,6 @@
 // Endless Runner
 // Jay Reddy
+// Approx Hours: 6
 
 let config = {
     type: Phaser.AUTO,  
