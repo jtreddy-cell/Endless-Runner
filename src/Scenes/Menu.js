@@ -13,9 +13,20 @@ class Menu extends Phaser.Scene {
         });
 
         // Preload interactable elements (obstacle, catnip, treat)
-        this.load.image("obstacle", "./assets/obstacle.png");
-        this.load.image("catnip", "./assets/catnip.png");
-        this.load.image("treat", "./assets/treat.png");
+        this.load.spritesheet("obstacle", "./assets/obstacle.png", {    
+            frameWidth: 64,
+            frameHeight: 64
+        });
+
+        this.load.spritesheet("catnip", "./assets/catnip.png", {
+            frameWidth: 64,
+            frameHeight: 64
+        });
+
+        this.load.spritesheet("treat", "./assets/treat.png", {
+            frameWidth: 64,
+            frameHeight: 64
+        });
     }
 
     create(){

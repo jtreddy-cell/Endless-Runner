@@ -34,6 +34,30 @@ class Play extends Phaser.Scene {
             frameRate: 1,
             repeat: -1
         });
+
+        // create catnip animation
+        this.anims.create({
+            key: "catnip",
+            frames: this.anims.generateFrameNumbers("catnip", { start: 0, end: 3 }),
+            frameRate: 4,
+            repeat: -1
+        });
+
+        // create treat animation
+        this.anims.create({
+            key: "treat",
+            frames: this.anims.generateFrameNumbers("treat", { start: 0, end: 0 }),
+            frameRate: 4,
+            repeat: -1
+        });
+
+        // create obstacle animation 
+        this.anims.create({
+            key: "obstacle",
+            frames: this.anims.generateFrameNumbers("obstacle", { start: 0, end: 0 }),
+            frameRate: 1,
+            repeat: -1
+        });
         
 
         // create cat at bottom right of the screen

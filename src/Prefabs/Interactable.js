@@ -10,6 +10,9 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
         // add interactable to existing scene
         scene.add.existing(this);
         scene.physics.add.existing(this);
+
+        // animate interactable 
+        this.anims.play(this.name, true);
     }
 
     update(){
