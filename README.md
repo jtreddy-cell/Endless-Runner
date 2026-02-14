@@ -18,7 +18,7 @@ Maybe: Implement additonal lanes to add depth, will try this last
 Visuals:
 Integrating cat animations DONE
 Integrate catnip sprite/animations DONE
-Integrate treat sprite/animations
+Integrate treat sprite/animations DONE
 Integrate obstacle sprite/animations
 Implement scrolling background
 
@@ -31,7 +31,7 @@ VISUAL LIST:
 
 Cat Sprite for Player DONE
 Catnip sprite DONE
-Treat sprite
+Treat sprite DONE
 Obstacles
 Background
 

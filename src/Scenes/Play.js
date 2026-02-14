@@ -46,7 +46,7 @@ class Play extends Phaser.Scene {
         // create treat animation
         this.anims.create({
             key: "treat",
-            frames: this.anims.generateFrameNumbers("treat", { start: 0, end: 0 }),
+            frames: this.anims.generateFrameNumbers("treat", { start: 0, end: 3 }),
             frameRate: 4,
             repeat: -1
         });
