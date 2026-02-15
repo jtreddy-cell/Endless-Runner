@@ -19,7 +19,7 @@ Visuals:
 Integrating cat animations DONE
 Integrate catnip sprite/animations DONE
 Integrate treat sprite/animations DONE
-Integrate obstacle sprite/animations
+Integrate obstacle sprite/animations DONE
 Implement scrolling background
 
 Audio:
@@ -32,7 +32,7 @@ VISUAL LIST:
 Cat Sprite for Player DONE
 Catnip sprite DONE
 Treat sprite DONE
-Obstacles
+Obstacle DONE
 Background
 
 SOUNDS LIST:

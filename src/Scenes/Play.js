@@ -93,7 +93,7 @@ class Play extends Phaser.Scene {
         // Stopwatch for elapsed time
         this.elapsedTime = 0;
 
-        this.timeText = this.add.text(10, 10, "Time: 0.00", {
+        this.scoreText = this.add.text(10, 10, "Score: 0", {
             fontSize: "32px",
             fill: "#FFFFFF"
         });
@@ -105,7 +105,7 @@ class Play extends Phaser.Scene {
 
             callback: () => {
                 this.elapsedTime += 0.01; // increase elapsed time by 0.01 seconds (10ms) 
-                this.score += 0.1 * this.stopwatchSpeed; // increase score over time, multiplied by the stopwatch speed
+                this.score += 0.01 * this.stopwatchSpeed; // increase score over time, multiplied by the stopwatch speed
             }
         });
         
@@ -130,7 +130,7 @@ class Play extends Phaser.Scene {
 
     update(){ 
         // Update the time text
-        this.timeText.setText("Time: " + this.elapsedTime.toFixed(2));
+        this.scoreText.setText("Score: " + this.score.toFixed(0));
         
         // Keep updating while game is not over
         if(!this.isGameOver){
