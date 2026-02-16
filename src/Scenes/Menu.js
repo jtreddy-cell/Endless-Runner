@@ -27,6 +27,10 @@ class Menu extends Phaser.Scene {
             frameWidth: 64,
             frameHeight: 64
         });
+
+        // preload background and scrollling elements
+        this.load.image("background", "./assets/background.png");
+        this.load.image("big clouds", "./assets/big_clouds.png");
     }
 
     create(){

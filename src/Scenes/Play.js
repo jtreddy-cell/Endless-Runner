@@ -8,15 +8,18 @@ class Play extends Phaser.Scene {
         // log being in play scene to console
         console.log("Play Scene");
 
-        // Display a background color for the play scene
-        this.cameras.main.setBackgroundColor("#DDDDDD");
-
         // Create one black horizantal recatngles to use as a lane at the bottom of the screen
         const laneHeight = height / 5;
 
         // bottom lane
-        this.ground = this.add.rectangle(width/2, laneHeight * 4 + 100, width, laneHeight, 0x000000);
+        this.ground = this.add.rectangle(width/2, laneHeight * 4 + 71, width, laneHeight, 0x000000);
         this.physics.add.existing(this.ground, true);
+
+        // add background image
+        this.background = this.add.tileSprite(0, 0, width, height, "background").setOrigin(0, 0);
+
+        // add big clouds image that scrolls slower than the background to create a parallax effect
+        this.bigClouds = this.add.tileSprite(0, 0, width, height - 71, "big clouds").setOrigin(0, 0);
 
         // Create cat running animation
         this.anims.create({
@@ -129,15 +132,18 @@ class Play extends Phaser.Scene {
     }
 
     update(){ 
-        // Update the time text
-        this.scoreText.setText("Score: " + this.score.toFixed(0));
-        
         // Keep updating while game is not over
         if(!this.isGameOver){
             this.cat.update();
             this.interactables.getChildren().forEach(interactable => {
                 interactable.update();
             });
+
+            // Scroll the clouds
+            this.bigClouds.tilePositionX -= this.gameSpeed; // scroll big clouds slower
+
+            // Update the score text
+            this.scoreText.setText("Score: " + this.score.toFixed(0));
         }
         else{
             this.gameOver();
@@ -162,7 +168,7 @@ class Play extends Phaser.Scene {
 
         // Create the interactable element at the left edge of the screen in the bottom lane
         const laneHeight = height / 5;
-        const interactable = new Interactable(this, 0, laneHeight * 4 - 25, type, 0, type).setOrigin(0.5);
+        const interactable = new Interactable(this, 0, laneHeight * 4 + 5, type, 0, type).setOrigin(0.5);
 
         // Add the interactable element to the list of interactables
         this.interactables.add(interactable);

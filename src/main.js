@@ -1,6 +1,6 @@
 // Endless Runner
 // Jay Reddy
-// Approx Hours: 6
+// Approx Hours: 15
 
 let config = {
     type: Phaser.AUTO,  
@@ -12,7 +12,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true
+            debug: false
         }
     },
     scene: [Menu, Play]
