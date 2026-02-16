@@ -168,7 +168,7 @@ class Play extends Phaser.Scene {
 
         // Create the interactable element at the left edge of the screen in the bottom lane
         const laneHeight = height / 5;
-        const interactable = new Interactable(this, 0, laneHeight * 4 + 5, type, 0, type).setOrigin(0.5);
+        const interactable = new Interactable(this, 0, laneHeight * 4, type, 0, type).setOrigin(0.5);
 
         // Add the interactable element to the list of interactables
         this.interactables.add(interactable);
