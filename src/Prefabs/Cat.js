@@ -24,6 +24,7 @@ class Cat extends Phaser.Physics.Arcade.Sprite {
 
         // Jump input
         if(Phaser.Input.Keyboard.JustDown(keySPACE) && this.body.blocked.down){
+            this.scene.sound.play('jump');
             this.setVelocityY(-this.jumpStrength);
         }
 

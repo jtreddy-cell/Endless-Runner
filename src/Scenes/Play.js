@@ -8,6 +8,9 @@ class Play extends Phaser.Scene {
         // log being in play scene to console
         console.log("Play Scene");
 
+        // PLay background music
+        this.sound.play("background_music", { loop: true });
+
         // Create one black horizantal recatngles to use as a lane at the bottom of the screen
         const laneHeight = height / 5;
 
@@ -64,7 +67,7 @@ class Play extends Phaser.Scene {
         
 
         // create cat at bottom right of the screen
-        this.cat = new Cat(this, width - 50, laneHeight * 4 - 100, "cat").setOrigin(0.5);
+        this.cat = new Cat(this, width - 50, laneHeight * 4 - 95, "cat").setOrigin(0.5);
         this.cat.immovable = true;  
 
         // collision between cat and ground
@@ -140,7 +143,7 @@ class Play extends Phaser.Scene {
             });
 
             // Scroll the clouds
-            this.bigClouds.tilePositionX -= this.gameSpeed; // scroll big clouds slower
+            this.bigClouds.tilePositionX -= this.gameSpeed * .25; // scroll big clouds slower
 
             // Update the score text
             this.scoreText.setText("Score: " + this.score.toFixed(0));
@@ -181,6 +184,9 @@ class Play extends Phaser.Scene {
         this.spawnTimer.paused = true;
         this.speedUp.paused = true;
 
+        // Stop background music
+        this.sound.stopByKey("background_music");
+
         // Stop cat animation
         this.cat.anims.stop();
 
@@ -193,8 +199,8 @@ class Play extends Phaser.Scene {
         // Display game over text
         let gameOverConfig = {
             fontFamily: "Arial",
-            fontSize: "48px",
-            color: "#FFFFFF",
+            fontSize: "36px",
+            color: "#000000",
             align: "center",
             padding: {
                 top: 5,

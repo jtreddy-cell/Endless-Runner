@@ -25,16 +25,17 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
         console.log("Collided with " + this.name);
         switch(this.name){
             case "obstacle":
+                this.scene.sound.play('game_over');
                 console.log("Game Over");
                 this.scene.isGameOver = true;
                 break;
             case "catnip":
-                console.log("Game speed increased");
+                this.scene.sound.play('item');
                 // Increase game speed and stopwatch speed for 10 seconds
                 this.scene.catnipEffect();
                 break;
             case "treat":
-                console.log("Score increased by 20");
+                this.scene.sound.play('item');
                 this.scene.score += 20;
                 break;
             default:

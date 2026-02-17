@@ -31,15 +31,18 @@ class Menu extends Phaser.Scene {
         // preload background and scrollling elements
         this.load.image("background", "./assets/background.png");
         this.load.image("big clouds", "./assets/big_clouds.png");
+
+        // preload audio
+        this.load.audio("jump", "./assets/jump.wav");
+        this.load.audio("item", "./assets/bonus.wav");
+        this.load.audio("game_over", "./assets/game-over.wav");
+        this.load.audio("game_start", "./assets/game-start.wav");
+        this.load.audio("background_music", "./assets/background-music.mp3");
     }
 
     create(){
-        // log being in menu scene to console
-        //console.log("Menu Scene");
-
         // Display a background color for the menu
         this.cameras.main.setBackgroundColor("#DDDDDD");
-
 
         // Display text describing instructions
         let menuConfig = {
@@ -63,7 +66,6 @@ class Menu extends Phaser.Scene {
     }
 
     update(){ 
-        // console.log("Updating Menu Scene");
         // Switch to play scene if player hits spacebar
         if(Phaser.Input.Keyboard.JustDown(keySPACE)){
             this.scene.start("playScene");
