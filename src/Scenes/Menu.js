@@ -68,6 +68,8 @@ class Menu extends Phaser.Scene {
     update(){ 
         // Switch to play scene if player hits spacebar
         if(Phaser.Input.Keyboard.JustDown(keySPACE)){
+            // Play game start sound effect
+            this.sound.play("game_start");
             this.scene.start("playScene");
         }
     }
