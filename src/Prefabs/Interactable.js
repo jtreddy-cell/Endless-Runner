@@ -4,8 +4,6 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, texture, frame);
 
         this.name = name;
-        console.log("Interactable created with type:", name);
-
 
         // add interactable to existing scene
         scene.add.existing(this);
@@ -22,11 +20,9 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
 
     collided(){
         // Handle collision effects based on the type of interactable element
-        console.log("Collided with " + this.name);
         switch(this.name){
             case "obstacle":
                 this.scene.sound.play('game_over');
-                console.log("Game Over");
                 this.scene.isGameOver = true;
                 break;
             case "catnip":
@@ -39,7 +35,7 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
                 this.scene.score += 20;
                 break;
             default:
-                console.log("Unknown interactable type");
+                console.warn("Unknown interactable type collided:", this.name);
         }
 
         // Destroy the interactable element when collided with the player

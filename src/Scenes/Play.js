@@ -5,9 +5,6 @@ class Play extends Phaser.Scene {
 
 
     create(){
-        // log being in play scene to console
-        console.log("Play Scene");
-
         // PLay background music
         this.sound.play("background_music", { loop: true });
 
@@ -81,6 +78,7 @@ class Play extends Phaser.Scene {
 
         // game speed variable
         this.gameSpeed = 2;
+        this.times_changed = 0;
 
         // define keys
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
@@ -116,7 +114,7 @@ class Play extends Phaser.Scene {
         });
         
         this.spawnTimer = this.time.addEvent({
-            delay: 2000, // spawns every 2 seconds
+            delay: 2000 ** (this.gameSpeed ** (this.times_changed)), // Decrease spawn timer delay as game speed increases
             loop: true,
             callback: () => {
                 this.spawnInteractable();
@@ -128,10 +126,10 @@ class Play extends Phaser.Scene {
             loop: true,
             callback: () => {
                 this.gameSpeed += 0.5;
+                this.times_changed += 1;
                 this.stopwatchSpeed += 0.25;
             }
         });
-
     }
 
     update(){ 
@@ -193,9 +191,6 @@ class Play extends Phaser.Scene {
         // Destroy all interactable elements
         this.interactables.clear(true, true);
 
-        // Display the score rounded to the nearest integer
-        console.log("Final Score:", Math.round(this.score));
-
         // Display game over text
         let gameOverConfig = {
             fontFamily: "Arial",
@@ -222,7 +217,6 @@ class Play extends Phaser.Scene {
             callback: () => {
                 this.gameSpeed -= 1;
                 this.stopwatchSpeed -= 0.5;
-                console.log("Catnip effect ended, game speed returned to normal");
             }
         });
     }

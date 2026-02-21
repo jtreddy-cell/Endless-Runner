@@ -64,7 +64,7 @@ class Menu extends Phaser.Scene {
         menuConfig.fontSize = "14px";
         this.add.text(10, height - 70, "Visuals and Programming done by Jay Reddy", menuConfig);
         this.add.text(10, height - 50, "Sound effects from Mixkit", menuConfig);
-        this.add.text(10, height - 30, "Background music by Tatamusic", menuConfig);
+        this.add.text(10, height - 30, "Background music by Tatamusic on Pixabay", menuConfig);
 
         // define keys
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
