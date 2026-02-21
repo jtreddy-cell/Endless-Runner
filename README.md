@@ -44,8 +44,8 @@ Background music from https://pixabay.com/music/search/gaming/.
 
 Rubric:
 Organization (3 points)
-Submit a link to your GitHub repository that shows a history of multiple meaningful commits with descriptive messages (1)
-Submit a playable link on GitHub pages (1)
+DONE Submit a link to your GitHub repository that shows a history of multiple meaningful commits with descriptive messages (1)
+DONE Submit a playable link on GitHub pages (1)
 In main.js (or equivalent), include a comment header with your name, game title, approximate hours spent on project, and your creative tilt justification (see below) (1)
 
 Structure and Design (15 points)
@@ -74,4 +74,4 @@ Does your game...
 ...do something technically interesting? Are you particularly proud of a programming technique you implemented? Did you look beyond the class examples and learn how to do something new? (1)
 ...have a great visual style? Does it use music or art that you're particularly proud of? Are you trying something new or clever with the endless runner form? (1)
 
-Score: 14/20
+Score: 16/20
