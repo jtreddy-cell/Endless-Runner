@@ -55,11 +55,16 @@ class Menu extends Phaser.Scene {
                 bottom: 5,
             },
         }
-
         this.add.text(width/2, height/2 - 50, "Endless Runner", menuConfig).setOrigin(0.5);
         menuConfig.fontSize = "18px";
         this.add.text(width/2, height/2 + 50, "Press SPACE to start and jump", menuConfig).setOrigin(0.5);
 
+
+        // Credits on the bottom left
+        menuConfig.fontSize = "14px";
+        this.add.text(10, height - 70, "Visuals and Programming done by Jay Reddy", menuConfig);
+        this.add.text(10, height - 50, "Sound effects from Mixkit", menuConfig);
+        this.add.text(10, height - 30, "Background music by Tatamusic", menuConfig);
 
         // define keys
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
