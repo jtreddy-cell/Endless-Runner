@@ -58,6 +58,7 @@ class Menu extends Phaser.Scene {
         this.add.text(width/2, height/2 - 50, "Endless Runner", menuConfig).setOrigin(0.5);
         menuConfig.fontSize = "18px";
         this.add.text(width/2, height/2 + 50, "Press SPACE to start and jump", menuConfig).setOrigin(0.5);
+        this.add.text(width/2, height/2 + 80, "Avoid obstacles and collect catnip and treats for points!", menuConfig).setOrigin(0.5);
 
 
         // Credits on the bottom left
